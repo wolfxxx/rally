@@ -1,1 +1,14 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect width="64" height="64" rx="16" fill="#142224"/><path d="m18 16 10 0-9 32H9zm17 0h10L36 48H26zm17 0h7l-9 32h-7z" fill="#c3f66b"/></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Rally X racing car">
+  <rect width="64" height="64" rx="15" fill="#142224"/>
+  <path d="M9 15v9m0 16v9M55 15v9m0 16v9" stroke="#536b53" stroke-width="3" stroke-linecap="round"/>
+  <g transform="rotate(12 32 32)">
+    <path d="M17 17h6v11h-6zm24 0h6v11h-6zM17 39h6v11h-6zm24 0h6v11h-6z" fill="#080f12"/>
+    <rect x="19" y="7" width="26" height="50" rx="8" fill="#cdf887"/>
+    <path d="M30 8h4v48h-4z" fill="#9dc663"/>
+    <path d="m24 22 16 0 2 11H22z" fill="#183b40"/>
+    <path d="M25 24h14" stroke="#719d96" stroke-width="2"/>
+    <rect x="24" y="43" width="16" height="7" rx="2" fill="#25494a"/>
+    <path d="M23 13h5m8 0h5" stroke="#f6ffdc" stroke-width="3" stroke-linecap="round"/>
+    <path d="M23 53h4m10 0h4" stroke="#ec916b" stroke-width="2" stroke-linecap="round"/>
+  </g>
+</svg>

@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#101a1b" />
+  <meta name="description" content="Small car. Big getaway. An original arcade maze chase with neon streets, smoke screens, and a catchy chiptune soundtrack." />
+  <title>Rally X — The Neon Gardens</title>
+  <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
+  <link rel="stylesheet" href="./style.css" />
+</head>
+<body>
+  <div class="app">
+    <header class="masthead">
+      <a class="brand" href="./" aria-label="Rally X home"><span class="brand-mark"><i></i><i></i><i></i></span>RALLY<span class="brand-x">X</span><span class="brand-edition">ARCADE<br>REIMAGINED</span></a>
+      <nav aria-label="Game settings">
+        <span class="local-tag"><span></span> NO QUARTERS NEEDED</span>
+        <button class="text-button" id="help-button"><span class="circle-help">?</span> How to play</button>
+        <button class="sound-button" id="sound-button" aria-label="Mute audio" aria-pressed="false"><span class="equalizer"><i></i><i></i><i></i><i></i></span><span id="sound-label">Sound on</span></button>
+      </nav>
+    </header>
+
+    <main>
+      <section class="heading-row">
+        <div><div class="eyebrow"><span class="tiny-star">✳</span> A LITTLE NOSTALGIA. A LOT OF ADRENALINE.</div><h1>Small car. <span>Big getaway.</span></h1></div>
+        <div class="best-score"><span>PERSONAL BEST</span><strong id="best-score">000000</strong></div>
+      </section>
+
+      <section class="arcade" aria-label="Rally X arcade game">
+        <div class="game-column">
+          <div class="dashboard">
+            <div class="stat score-stat"><span>SCORE</span><strong id="score">000000</strong></div>
+            <div class="stat"><span>FLAGS</span><strong><svg class="flag-icon" viewBox="0 0 20 20" aria-hidden="true"><path d="M4 18V2m0 1h12l-3 4 3 4H4"/></svg><b id="flags">00</b><em>/ 10</em></strong></div>
+            <div class="stat fuel-stat"><span>FUEL <b id="fuel-number">100%</b></span><div class="fuel-track"><div id="fuel-bar"></div></div></div>
+            <div class="stat lives-stat"><span>LIVES</span><div id="lives" class="lives" aria-label="3 lives"></div></div>
+            <button class="pause-button" id="pause-button" aria-label="Pause game" disabled><span>Ⅱ</span></button>
+          </div>
+
+          <div class="game-viewport" id="viewport">
+            <canvas id="game" aria-label="Rally maze. Use arrow keys or WASD to steer, Space for smoke, P to pause." tabindex="0"></canvas>
+            <div class="world-label"><span class="live-dot"></span><span id="world-name">THE NEON GARDENS</span><span class="world-label-divider">/</span><span id="world-round">ROUND 01</span></div>
+            <div class="coordinate-label">35° 40′ N &nbsp; 139° 42′ E</div>
+            <div class="game-toast" id="toast" role="status" aria-live="polite"></div>
+            <div class="start-overlay overlay" id="start-overlay">
+              <div class="start-card">
+                <span class="card-kicker"><span class="live-dot"></span> THE STREETS ARE YOURS</span>
+                <div class="start-car" aria-hidden="true"><span class="car-stripe"></span><span class="car-windshield"></span><span class="car-backglass"></span></div>
+                <h2>Make your<br><em>great escape.</em></h2>
+                <p>Grab every flag. Shake your pursuers.<br>Leave a little smoke behind.</p>
+                <button class="primary-button" id="start-button">Start engine <span>↗</span></button>
+                <span class="start-hint">OR PRESS ENTER <span>↵</span></span>
+              </div>
+              <div class="overlay-caption"><span>01 — THE NEON GARDENS</span><span>GOOD LUCK OUT THERE.</span></div>
+            </div>
+            <div class="overlay modal-overlay" id="state-overlay" hidden>
+              <div class="state-card"><div class="eyebrow" id="state-kicker">TAKE A BREATHER</div><h2 id="state-title">Parked for a moment.</h2><p id="state-description">Your getaway can wait.</p><button class="primary-button" id="state-button">Back to the chase <span>↗</span></button><button class="secondary-button" id="restart-button">Start a fresh run</button></div>
+            </div>
+            <div class="vignette"></div>
+          </div>
+
+          <div class="game-footer"><span><span class="status-dot"></span><span id="game-status">READY WHEN YOU ARE</span></span><span>BUILT FOR THE CHASE <span class="footer-cross">✳</span></span></div>
+        </div>
+
+        <aside class="sidebar">
+          <div class="sector-title"><span>YOUR NEIGHBORHOOD</span><span class="radar-symbol">⌖</span></div>
+          <div class="radar-wrap"><canvas id="radar" width="264" height="218" aria-label="Radar showing your position, flags, and pursuers"></canvas><div class="radar-corner tl"></div><div class="radar-corner br"></div></div>
+          <div class="radar-legend"><span><i class="you-dot"></i>YOU</span><span><i class="flag-dot"></i>FLAGS</span><span><i class="enemy-dot"></i>PURSUERS</span></div>
+          <div class="mission"><div class="section-label">THE MISSION <span id="mission-round">01 / ∞</span></div><h3>Take the scenic route.<br>Just don’t get caught.</h3><p>Collect all 10 flags to clear the round. Keep an eye on your fuel.</p><div class="mission-progress" id="mission-progress" aria-label="0 of 10 flags collected"></div></div>
+          <div class="smoke-panel"><div class="smoke-icon">≋</div><div><span>SMOKE SCREEN</span><strong>Lose your tail.</strong></div><kbd>SPACE</kbd></div>
+          <p class="smoke-note">Stuns pursuers. Costs a little fuel.<br><span id="smoke-status">Ready to deploy</span></p>
+          <div class="soundtrack"><span class="record-icon">◉</span><div><span>NOW SPINNING</span><strong>Midnight Detour</strong><small>ORIGINAL 8-BIT SOUNDTRACK</small></div><span class="track-bars">▂▅▃▇</span></div>
+        </aside>
+      </section>
+
+      <section class="below-game" aria-label="Controls">
+        <div class="controls"><span class="control-title">THE BASICS</span><span><kbd>↑</kbd><kbd>←</kbd><kbd>↓</kbd><kbd>→</kbd> <span>or</span> <kbd>W A S D</kbd> <b>Steer</b></span><span><kbd>SPACE</kbd><b>Smoke</b></span><span><kbd>P</kbd><b>Pause</b></span></div>
+        <span class="little-note">A familiar rush. A fresh set of wheels. <span>↗</span></span>
+      </section>
+      <div class="touch-controls" aria-label="Touch controls"><div class="dpad"><button data-dir="up" aria-label="Steer up">↑</button><button data-dir="left" aria-label="Steer left">←</button><button data-dir="down" aria-label="Steer down">↓</button><button data-dir="right" aria-label="Steer right">→</button></div><button id="touch-smoke">≋ <span>SMOKE</span></button></div>
+    </main>
+    <footer class="page-footer"><span>RALLY X <b>© 2026</b></span><span>AN INDEPENDENT LOVE LETTER TO THE ARCADE.</span><span>ONE MORE ROUND? <span>↗</span></span></footer>
+  </div>
+
+  <dialog id="help-dialog"><button class="dialog-close" id="close-help" aria-label="Close instructions">×</button><div class="eyebrow">YOUR QUICK PIT STOP</div><h2>The art of the getaway.</h2><p>Your car keeps moving. Pick a direction before a junction and it will turn as soon as the road opens.</p><ul><li><strong>Arrows or WASD</strong><span>Steer through the streets. On touch screens, use the direction buttons.</span></li><li><strong>Collect 10 yellow flags</strong><span>Clear the neighborhood and reach the next round. The special S flag doubles the value of flags collected afterward.</span></li><li><strong>Space drops smoke</strong><span>Stun pursuers behind you for 3 seconds. Each puff costs 4% fuel and needs a short cooldown.</span></li><li><strong>Keep moving, keep fueled</strong><span>Green fuel cans restore 30%. Avoid red cars and orange roadblocks. You have 3 lives.</span></li><li><strong>P or Escape to pause</strong><span>Music and the chase pause when you leave the window. M toggles sound.</span></li></ul><button class="primary-button" id="help-done">Got it. Let’s drive. <span>↗</span></button><p class="credits">Inspired by the maze-chase spirit of New Rally-X. Original graphics, code, and music; not affiliated with the original game’s creators.</p></dialog>
+  <script type="module" src="./src/game.js"></script>
+</body>
+</html>
